@@ -3,6 +3,18 @@
     <string name="hello_text">WELCOME TO BMI CALCULATOR!</string>
     <string name="continue_text">Click Next To Continue</string>
     <string name="next_button">NEXT</string>
-    <string name="male_text">Male</string>
-    <string name="female_text">Female</string>
+
+    <string name="maleButton_text">MALE</string>
+    <string name="femaleButton_text">MALE</string>
+    <string name="height_text">HEIGHT</string>
+    <string name="cm_text">160cm</string>
+    <string name="kg_weight_text">WEIGHT (KG)</string>
+    <string name="lbs_weight_text">WEIGHT (LBS)</string>
+    <string name="age_text">AGE</string>
+
+    <string name="weight_count">60</string>
+    <string name="age_count">18</string>
+
+    <string name="plus_sign">+</string>
+    <string name="minus_sign">-</string>
 </resources>
