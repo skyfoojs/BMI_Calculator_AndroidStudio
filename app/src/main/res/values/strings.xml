@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BMI Calculator</string>
+    <string name="hello_text">WELCOME TO BMI CALCULATOR!</string>
+    <string name="continue_text">Click Next To Continue</string>
+    <string name="next_button">NEXT</string>
+    <string name="male_text">Male</string>
+    <string name="female_text">Female</string>
+</resources>
