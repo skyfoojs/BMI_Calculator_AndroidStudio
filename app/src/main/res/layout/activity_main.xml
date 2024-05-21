@@ -52,4 +52,5 @@
         android:text="@string/next_button"
         android:textSize="25sp"
         android:textStyle="bold" />
+
 </RelativeLayout>
