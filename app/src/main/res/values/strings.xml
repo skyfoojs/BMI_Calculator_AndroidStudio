@@ -17,4 +17,6 @@
 
     <string name="plus_sign">+</string>
     <string name="minus_sign">-</string>
+
+    <string name="calculate_button">CALCULATE</string>
 </resources>
