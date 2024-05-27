@@ -1,13 +1,19 @@
 package com.example.bmi_calc_assignment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.slider.Slider;
 
@@ -26,9 +32,13 @@ public class CalculatorPage extends AppCompatActivity {
     // The Age Slider.
     private Slider slider;
     // BMI is the formula to calculate, resultDependsOnGender is to calculate the result depends on the gender.
-    private double bmi, resultDependsOnGender;
+    public double bmi, resultDependsOnGender;
     // Add and Minus Image View to adjust the user's information.
     private ImageView buttonForAddWeight, buttonForMinusWeight, buttonForAddAge, buttonForMinusAge;
+    // Button to Calculate the Result
+    private Button calculateButton;
+    // Weight status of user and the array of types of status.
+    public String userStatus, typesOfStatus[];
     // Decimal Format to Format the Weight
     private DecimalFormat decimalFormatForWeight = new DecimalFormat("##.##");
 
@@ -109,12 +119,29 @@ public class CalculatorPage extends AppCompatActivity {
     public void calculations() {
         bmi = Double.parseDouble(getUserWeight()) / Math.pow(Double.parseDouble(getUserHeight()), 2);
         resultDependsOnGender = 1.20 * bmi + (0.23 * Integer.parseInt(getUserAge()) - 5.4 - 10.8 * genderIndex);
+
+        if(resultDependsOnGender < 18.5) {
+            userStatus = typesOfStatus[0];
+        } else if (resultDependsOnGender < 25) {
+            userStatus = typesOfStatus[1];
+        } else if (resultDependsOnGender < 30) {
+            userStatus = typesOfStatus[2];
+        } else {
+            userStatus = typesOfStatus[3];
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_calculator_page);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
 
         // Assigning Values
         slider = findViewById(R.id.slider);
@@ -126,12 +153,14 @@ public class CalculatorPage extends AppCompatActivity {
         userWeight = findViewById(R.id.user_weight);
         userAge = findViewById(R.id.user_age);
         radioGroupOfUserGender = (RadioGroup) findViewById(R.id.radioGroup);
+        calculateButton = (Button) findViewById(R.id.calculate_button);
+        typesOfStatus = new String[]{"Underweight!", "Healthy!", "Overweight!", "Obesity!"};
 
         // To Check user choose Male or Female
         radioGroupOfUserGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == 0) {
+                if(checkedId == R.id.maleRadioButton) {
                     usersGender = "Male";
                     genderIndex = 0;
                 } else {
@@ -179,6 +208,23 @@ public class CalculatorPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 minusAge();
+            }
+        });
+
+        // Adds onClickListener to the button Calculate and brings user to the result page.
+        calculateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Brings the calculations to ResultPage.class
+                calculations();
+
+                Intent intent = new Intent(CalculatorPage.this, ResultPage.class);
+
+                // Put the BMI and user status into the Intent
+                intent.putExtra("bmi", resultDependsOnGender);
+                intent.putExtra("userStatus", userStatus);
+
+                startActivity(intent);
             }
         });
     }

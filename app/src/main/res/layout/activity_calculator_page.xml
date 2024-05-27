@@ -10,7 +10,7 @@
     android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
-    tools:context=".MainActivity">
+    tools:context=".CalculatorPage">
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -27,9 +27,7 @@
             android:background="@color/cardview_dark_background"
             android:layout_height="30dp"
             android:layout_width="match_parent"
-            android:textAllCaps="true"
-
-            />
+            android:textAllCaps="true" />
 
         <RadioGroup
             android:layout_marginLeft="50dp"
@@ -155,7 +153,7 @@
             android:layout_height="150dp"
             android:layout_row="0"
             android:layout_column="1"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="40dp"
             app:cardBackgroundColor="#2D1447"
             app:cardCornerRadius="15dp"
             app:cardElevation="0dp">
@@ -211,5 +209,5 @@
         android:text="@string/calculate_button"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:onClick="resultPage"/>
+        android:id="@+id/calculate_button"/>
 </RelativeLayout>
