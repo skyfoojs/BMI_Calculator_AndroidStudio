@@ -4,7 +4,7 @@
 
     <string name="maleButton_text">MALE</string>
     <string name="femaleButton_text">MALE</string>
-    <string name="height_text">HEIGHT</string>
+    <string name="height_text">HEIGHT (CM)</string>
     <string name="cm_text">160cm</string>
     <string name="kg_weight_text">WEIGHT (KG)</string>
     <string name="lbs_weight_text">WEIGHT (LBS)</string>
