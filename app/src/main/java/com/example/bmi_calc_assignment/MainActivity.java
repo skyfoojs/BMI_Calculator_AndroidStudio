@@ -2,9 +2,7 @@ package com.example.bmi_calc_assignment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
+import android.os.Handler;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -24,12 +22,14 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button nextButton = (Button) findViewById(R.id.next_button);
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        // Splash Screen
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
+            public void run() {
                 startActivity(new Intent(MainActivity.this, CalculatorPage.class));
+                finish();
             }
-        });
+        }, 3000);
+
     }
 }

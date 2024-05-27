@@ -1,22 +1,37 @@
 package com.example.bmi_calc_assignment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
+import androidx.annotation.PluralsRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class ResultPage extends AppCompatActivity {
-    // TextView to Display user BMI.
-    private TextView displayBmi;
-    // Text View to Display user Status.
-    private TextView displayUserStatus;
+import java.text.DecimalFormat;
+import java.util.Objects;
 
+public class ResultPage extends AppCompatActivity {
+    private TextView displayBmi;
+    private TextView displayUserStatus;
+    private double bmi, resultDependsOnGender;
+    private String userStatus;
+    private final String[] typesOfStatus = {"Underweight!", "Healthy!", "Overweight!", "Obesity!"};
+
+    private double weight, height;
+
+    private int age;
+    // Decimal Format to Format the Weight
+    private final DecimalFormat decimalFormatForWeight = new DecimalFormat("###.##");
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,16 +43,44 @@ public class ResultPage extends AppCompatActivity {
             return insets;
         });
 
-        // Assigning values
+        // Assign the views
         displayBmi = findViewById(R.id.displayBmi);
         displayUserStatus = findViewById(R.id.displayStatus);
 
-        // Retrieve the data from the Intent
-        double bmi = getIntent().getDoubleExtra("bmi", 0.0);
-        String userStatus = getIntent().getStringExtra("userStatus");
+        // Retrieve the passed data from the Intent
+        Intent intent = getIntent();
+        String weightStr = intent.getStringExtra("weight");
+        String heightStr = intent.getStringExtra("height");
+        String ageStr = intent.getStringExtra("age");
 
-        // Display the retrieved data
-        displayBmi.setText(String.format("%.2f", bmi));
-        displayUserStatus.setText(userStatus);
+        // Parse the data
+        try {
+            weight = Double.parseDouble(Objects.requireNonNull(weightStr));
+            height = Double.parseDouble(Objects.requireNonNull(heightStr)) / 100;
+            age = Integer.parseInt(Objects.requireNonNull(ageStr));
+
+            // Perform the calculations
+            bmi = weight / Math.pow(height, 2);
+
+            // Determine the user status based on the bmi
+            if (bmi < 18.5) {
+                userStatus = typesOfStatus[0];
+            } else if (bmi < 25) {
+                userStatus = typesOfStatus[1];
+            } else if (bmi < 30) {
+                userStatus = typesOfStatus[2];
+            } else {
+                userStatus = typesOfStatus[3];
+            }
+
+            // Display the results
+            displayBmi.setText(decimalFormatForWeight.format(bmi));
+            displayUserStatus.setText(userStatus);
+
+        } catch(NumberFormatException | NullPointerException e) {
+            Log.e("ResultPage", "Error parsing intent data", e);
+            displayBmi.setText("N/A");
+            displayUserStatus.setText("Error calculating BMI, please try again.");
+        }
     }
 }

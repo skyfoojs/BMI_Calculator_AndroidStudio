@@ -6,19 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0F0522"
-    android:paddingLeft="16dp"
-    android:paddingTop="16dp"
-    android:paddingRight="16dp"
-    android:paddingBottom="16dp"
+    android:padding="16dp"
     tools:context=".CalculatorPage">
 
-    <GridLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:rowCount="6"
-        android:columnCount="2"
         android:layout_alignParentEnd="true"
-        android:id="@+id/gridLayout">
+        android:id="@+id/upper_layout">
 
         <TextView
             android:text="@string/app_name"
@@ -27,187 +22,225 @@
             android:background="@color/cardview_dark_background"
             android:layout_height="30dp"
             android:layout_width="match_parent"
-            android:textAllCaps="true" />
+            android:textAllCaps="true"
+            android:id="@+id/app_name"/>
 
-        <RadioGroup
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/gender_selection"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:orientation="horizontal">
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/app_name" >
 
-            <RadioButton
-                android:id="@+id/maleRadioButton"
-                android:layout_width="160dp"
-                android:layout_height="180dp"
-                android:background="@drawable/male"
-                android:checked="true"
-                />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/maleCard"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                app:cardBackgroundColor="#2D1447"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="8dp"
+                android:layout_marginStart="20dp">
 
-            <RadioButton
-                android:id="@+id/femaleRadioButton"
-                android:layout_width="160dp"
-                android:layout_height="180dp"
-                android:background="@drawable/female" />
-        </RadioGroup>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/male"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/femaleCard"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                app:cardBackgroundColor="#2D1447"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="8dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/female"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="40dp"
             android:text="@string/height_text"
             android:textColor="@color/white"
+            android:textStyle="bold"
             android:textAlignment="center"
-            />
+            android:id="@+id/height_text"
+            android:layout_below="@id/gender_selection"/>
 
         <TextView
             android:id="@+id/sliderHeightText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_row="3"
-            android:layout_column="0"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:text="@string/cm_text"
             android:textColor="@color/white"
             android:textAlignment="center"
+            android:layout_below="@id/height_text"
             android:textSize="30sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
         <com.google.android.material.slider.Slider
             android:id="@+id/slider"
-            android:valueFrom="120"
-            android:valueTo="220"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_row="4"
-            android:layout_column="0" />
+            android:layout_marginTop="5dp"
+            android:valueFrom="120"
+            android:valueTo="220"
+            android:layout_below="@id/sliderHeightText"/>
+    </RelativeLayout>
 
-    </GridLayout>
-
-    <GridLayout
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="180dp">
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/upper_layout"
+        android:id="@+id/weight_age_layout"
+        android:layout_marginTop="20dp" >
 
         <androidx.cardview.widget.CardView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_row="0"
-            android:layout_column="0"
             android:layout_marginStart="20dp"
             app:cardBackgroundColor="#2D1447"
             app:cardCornerRadius="15dp"
-            app:cardElevation="0dp">
+            app:cardElevation="8dp"
+            android:layout_alignParentStart="true">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/kg_weight_text"
-                android:textAlignment="center"
-                android:textColor="#A5BDB3"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:layout_height="match_parent"
+                android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/user_weight"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:layout_marginTop="30dp"
-                android:text="@string/weight_count"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kg_weight_text"
+                    android:textAlignment="center"
+                    android:textColor="#A5BDB3"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/plus"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="80dp"
-                android:id="@+id/plusSignForWeight"
-                android:onClick="addWeight"
-                />
+                <TextView
+                    android:id="@+id/user_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/weight_count" />
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/minus"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="80dp"
-                android:id="@+id/minusSignForWeight"
-                android:onClick="minusWeight"
-                />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/plus"
+                    android:layout_marginTop="80dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="20dp"
+                    android:id="@+id/plusSignForWeight" />
 
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/minus"
+                    android:layout_marginTop="80dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"
+                    android:id="@+id/minusSignForWeight" />
+            </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
             app:cardBackgroundColor="#2D1447"
             app:cardCornerRadius="15dp"
-            app:cardElevation="0dp">
+            app:cardElevation="8dp"
+            android:layout_alignParentEnd="true">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/age_text"
-                android:textAlignment="center"
-                android:textColor="#A5BDB3"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:layout_height="match_parent"
+                android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:layout_marginTop="30dp"
-                android:text="@string/age_count"
-                android:id="@+id/user_age"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/age_text"
+                    android:textAlignment="center"
+                    android:textColor="#A5BDB3"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/plus"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="80dp"
-                android:id="@+id/plusSignForAge"
-                android:onClick="addAge"/>
+                <TextView
+                    android:id="@+id/user_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/age_count" />
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/minus"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="80dp"
-                android:id="@+id/minusSignForAge"
-                android:onClick="minusAge"/>
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/plus"
+                    android:layout_marginTop="80dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="20dp"
+                    android:id="@+id/plusSignForAge" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/minus"
+                    android:layout_marginTop="80dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"
+                    android:id="@+id/minusSignForAge" />
+            </RelativeLayout>
         </androidx.cardview.widget.CardView>
-
-    </GridLayout>
+    </RelativeLayout>
 
     <Button
-        android:layout_height="80dp"
+        android:id="@+id/calculate_button"
         android:layout_width="220dp"
-        android:textSize="25sp"
-        android:layout_marginBottom="30dp"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:text="@string/calculate_button"
+        android:layout_height="80dp"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/calculate_button"/>
+        android:layout_below="@+id/weight_age_layout"
+        android:text="@string/calculate_button"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:textAlignment="center"
+        android:backgroundTint="#2D1447"
+        android:textColor="@color/white" />
+
 </RelativeLayout>
