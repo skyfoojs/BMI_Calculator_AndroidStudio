@@ -22,8 +22,12 @@
     <string name="bmi_starter_value">0</string>
     <string name="status_label">YOUR WEIGHT STATUS</string>
     <string name="status_starter_value">Healthy!</string>
-    <string name="gender_label">YOUR GENDER</string>
     <string name="height_label">HEIGHT: </string>
-    <string name="age_label">AGE</string>
+    <string name="height_starter_value">160</string>
+    <string name="weight_label">WEIGHT: </string>
+    <string name="weight_starter_value">60</string>
+    <string name="age_label">AGE:</string>
+    <string name="age_starter_value">18</string>
     <string name="another_calculation_button">CALCULATE AGAIN</string>
+
 </resources>

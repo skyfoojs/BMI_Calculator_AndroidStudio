@@ -3,14 +3,12 @@ package com.example.bmi_calc_assignment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.Nullable;
-import androidx.annotation.PluralsRes;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -19,19 +17,24 @@ import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class ResultPage extends AppCompatActivity {
-    private TextView displayBmi;
-    private TextView displayUserStatus;
-    private double bmi, resultDependsOnGender;
+    // Text View to display BMI, Status, Height, Weight and Age.
+    private TextView displayBmi, displayUserStatus, displayUserHeight, displayUserWeight, displayUserAge;
+    // Button to back to Calculate Page.
+    private Button calculateAgainButton;
+    // BMI of the user.
+    private double bmi;
+    // Status of the user.
     private String userStatus;
+    // Array to store the type of Status.
     private final String[] typesOfStatus = {"Underweight!", "Healthy!", "Overweight!", "Obesity!"};
-
+    // Double type of weight and height.
     private double weight, height;
-
+    // Integer type of Age.
     private int age;
     // Decimal Format to Format the Weight
     private final DecimalFormat decimalFormatForWeight = new DecimalFormat("###.##");
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,10 @@ public class ResultPage extends AppCompatActivity {
         // Assign the views
         displayBmi = findViewById(R.id.displayBmi);
         displayUserStatus = findViewById(R.id.displayStatus);
+        displayUserHeight = findViewById(R.id.display_height);
+        displayUserWeight = findViewById(R.id.display_weight);
+        displayUserAge = findViewById(R.id.display_age);
+        calculateAgainButton = findViewById(R.id.calculate_again);
 
         // Retrieve the passed data from the Intent
         Intent intent = getIntent();
@@ -53,8 +60,8 @@ public class ResultPage extends AppCompatActivity {
         String heightStr = intent.getStringExtra("height");
         String ageStr = intent.getStringExtra("age");
 
-        // Parse the data
         try {
+            // Parse the data
             weight = Double.parseDouble(Objects.requireNonNull(weightStr));
             height = Double.parseDouble(Objects.requireNonNull(heightStr)) / 100;
             age = Integer.parseInt(Objects.requireNonNull(ageStr));
@@ -76,11 +83,21 @@ public class ResultPage extends AppCompatActivity {
             // Display the results
             displayBmi.setText(decimalFormatForWeight.format(bmi));
             displayUserStatus.setText(userStatus);
+            displayUserHeight.setText(heightStr);
+            displayUserWeight.setText(weightStr);
+            displayUserAge.setText(ageStr);
 
         } catch(NumberFormatException | NullPointerException e) {
-            Log.e("ResultPage", "Error parsing intent data", e);
-            displayBmi.setText("N/A");
-            displayUserStatus.setText("Error calculating BMI, please try again.");
+                displayBmi.setText("N/A");
+                displayUserStatus.setText("Error calculating BMI, please try again.");
         }
+
+        // Adds onClickListener to the button Calculate Again and brings user backs to the Calculate Page.
+        calculateAgainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ResultPage.this, CalculatorPage.class));
+            }
+        });
     }
 }

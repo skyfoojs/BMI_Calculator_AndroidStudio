@@ -7,6 +7,7 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -23,8 +24,10 @@ import java.text.DecimalFormat;
 
 public class CalculatorPage extends AppCompatActivity {
 
-    // Text View to Display User's Weight, Age and Height.
-    private TextView userWeight, userAge, userHeight;
+    // Text View to Display User's.
+    private TextView userHeight;
+    // Edit Text to Display User's Weight and User's Age.
+    private EditText userWeight, userAge;
     // To check whether user is male or female.
     private CardView male, female;
     // To store user's gender.
@@ -35,7 +38,6 @@ public class CalculatorPage extends AppCompatActivity {
     private ImageView buttonForAddWeight, buttonForMinusWeight, buttonForAddAge, buttonForMinusAge;
     // Button to Calculate the Result
     private Button calculateButton;
-
     // Decimal Format to Format the Weight
     private final DecimalFormat decimalFormatForWeight = new DecimalFormat("###.##");
 
@@ -71,45 +73,30 @@ public class CalculatorPage extends AppCompatActivity {
     // When user presses the Add button on Weight, the Weight will not exceed 200.
     public void addWeight() {
         double currentWeight = Double.parseDouble(getUserWeight());
-        if (currentWeight < 200) {
-            double newUserWeight = currentWeight + 0.1;
-            setUserWeight(decimalFormatForWeight.format(newUserWeight));
-        } else {
-            setUserWeight("200");
-        }
+        currentWeight += 0.1;
+        setUserWeight(decimalFormatForWeight.format(currentWeight));
+
     }
 
     // When user presses the Minus button on Weight, the weight will not falls below 20.
     public void minusWeight() {
         double currentWeight = Double.parseDouble(getUserWeight());
-        if (currentWeight > 20) {
-            double newUserWeight = currentWeight - 0.1;
-            setUserWeight(decimalFormatForWeight.format(newUserWeight));
-        } else {
-            setUserWeight("20");
-        }
+        currentWeight -= 0.1;
+        setUserWeight(decimalFormatForWeight.format(currentWeight));
     }
 
     // When user presses the Add button on Age, the age will not exceed 100.
     public void addAge() {
         int currentAge = Integer.parseInt(getUserAge());
-        if (currentAge < 100) {
-            int newUserAge = currentAge + 1;
-            setUserAge(String.valueOf(newUserAge));
-        } else {
-            setUserAge("100");
-        }
+        currentAge += 1;
+        setUserAge(String.valueOf(currentAge));
     }
 
     // When user presses the Minus button on Age, the age will not falls below 1.
     public void minusAge() {
         int currentAge = Integer.parseInt(getUserAge());
-        if (currentAge > 1) {
-            int newUserAge = currentAge - 1;
-            setUserAge(String.valueOf(newUserAge));
-        } else {
-            setUserAge("1");
-        }
+        currentAge -= 1;
+        setUserAge(String.valueOf(currentAge));
     }
 
     @Override
@@ -132,7 +119,7 @@ public class CalculatorPage extends AppCompatActivity {
         userHeight = findViewById(R.id.sliderHeightText);
         userWeight = findViewById(R.id.user_weight);
         userAge = findViewById(R.id.user_age);
-        calculateButton = (Button) findViewById(R.id.calculate_button);
+        calculateButton = findViewById(R.id.calculate_button);
         male = findViewById(R.id.maleCard);
         female = findViewById(R.id.femaleCard);
 
@@ -203,15 +190,29 @@ public class CalculatorPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(gender.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Please Select a Gender", Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent intent = new Intent(CalculatorPage.this, ResultPage.class);
-                    intent.putExtra("weight", getUserWeight());
-                    intent.putExtra("height", getUserHeight());
-                    intent.putExtra("age", getUserAge());
-                    intent.putExtra("gender", gender);
-                    startActivity(intent);
+                try {
+                    double weight = Double.parseDouble(getUserWeight());
+                    int age = Integer.parseInt(getUserAge());
+                    double height = Double.parseDouble(getUserHeight());
+
+                    if(gender.isEmpty()) {
+                        Toast.makeText(getApplicationContext(), "Please Select a Gender", Toast.LENGTH_SHORT).show();
+                    } else if(weight > 150) {
+                        Toast.makeText(getApplicationContext(), "Weight should not exceed 150", Toast.LENGTH_SHORT).show();
+                    } else if(age > 100) {
+                        Toast.makeText(getApplicationContext(), "Age should not exceed 100", Toast.LENGTH_SHORT).show();
+                    } else if(height <= 0) {
+                        Toast.makeText(getApplicationContext(), "Height should be greater than zero", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(CalculatorPage.this, ResultPage.class);
+                        intent.putExtra("weight", getUserWeight());
+                        intent.putExtra("height", getUserHeight());
+                        intent.putExtra("age", getUserAge());
+                        intent.putExtra("gender", gender);
+                        startActivity(intent);
+                    }
+                } catch (NumberFormatException e) {
+                    Toast.makeText(getApplicationContext(), "Please Select Your Height", Toast.LENGTH_SHORT).show();
                 }
             }
         });
