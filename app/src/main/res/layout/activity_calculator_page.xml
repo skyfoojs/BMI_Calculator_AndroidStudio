@@ -23,7 +23,9 @@
             android:layout_height="30dp"
             android:layout_width="match_parent"
             android:textAllCaps="true"
-            android:id="@+id/app_name"/>
+            android:id="@+id/app_name"
+            android:fontFamily="@font/serif_text"
+            android:letterSpacing="0.05" />
 
         <RelativeLayout
             android:id="@+id/gender_selection"
@@ -88,7 +90,9 @@
             android:textStyle="bold"
             android:textAlignment="center"
             android:id="@+id/height_text"
-            android:layout_below="@id/gender_selection"/>
+            android:layout_below="@id/gender_selection"
+            android:fontFamily="@font/josenfin_text"
+            android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/sliderHeightText"
@@ -142,7 +146,8 @@
                     android:textAlignment="center"
                     android:textColor="#A5BDB3"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/concertone_text"/>
 
                 <EditText
                     android:id="@+id/user_weight"
@@ -198,7 +203,8 @@
                     android:textAlignment="center"
                     android:textColor="#A5BDB3"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/concertone_text"/>
 
                 <EditText
                     android:id="@+id/user_age"
@@ -243,9 +249,10 @@
         android:text="@string/calculate_button"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="45dp"
         android:textAlignment="center"
         android:backgroundTint="#2D1447"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:fontFamily="@font/concertone_text"/>
 
 </RelativeLayout>

@@ -16,18 +16,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/upper_layout">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/josenfin_text"
             android:text="@string/bmi_label"
+            android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"/>
+            android:textAlignment="center"/>
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="65dp"
             android:layout_centerHorizontal="true"
             android:layout_width="380dp"
             android:layout_height="65dp"
@@ -54,7 +55,8 @@
             android:textStyle="bold"
             android:textColor="@color/white"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="150dp" />
+            android:layout_marginTop="150dp"
+            android:fontFamily="@font/josenfin_text"/>
 
         <androidx.cardview.widget.CardView
             android:layout_marginTop="190dp"
@@ -91,7 +93,8 @@
             android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold"
-            android:layout_marginStart="20dp"/>
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/changa_text"/>
 
         <androidx.cardview.widget.CardView
             android:layout_alignParentEnd="true"
@@ -107,7 +110,8 @@
                 android:text="@string/height_starter_value"
                 android:textColor="@color/white"
                 android:textAlignment="center"
-                android:textSize="50sp"
+                android:textSize="40sp"
+                android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 android:id="@+id/display_height"/>
         </androidx.cardview.widget.CardView>
@@ -120,7 +124,8 @@
             android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold"
-            android:layout_marginStart="20dp"/>
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/changa_text"/>
 
         <androidx.cardview.widget.CardView
             android:layout_alignParentEnd="true"
@@ -136,8 +141,9 @@
                 android:text="@string/weight_starter_value"
                 android:textColor="@color/white"
                 android:textAlignment="center"
-                android:textSize="50sp"
+                android:textSize="40sp"
                 android:textStyle="bold"
+                android:layout_marginTop="5dp"
                 android:id="@+id/display_weight"/>
         </androidx.cardview.widget.CardView>
 
@@ -149,7 +155,8 @@
             android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold"
-            android:layout_marginStart="20dp"/>
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/changa_text"/>
 
         <androidx.cardview.widget.CardView
             android:layout_alignParentEnd="true"
@@ -157,17 +164,18 @@
             android:layout_width="200dp"
             android:layout_height="65dp"
             app:cardCornerRadius="15dp"
-            app:cardBackgroundColor="#096671">
+            app:cardBackgroundColor="#096671" >
 
             <TextView
+                android:id="@+id/display_age"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/age_starter_value"
-                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
                 android:textAlignment="center"
-                android:textSize="50sp"
-                android:textStyle="bold"
-                android:id="@+id/display_age"/>
+                android:textColor="@color/white"
+                android:textSize="40sp"
+                android:textStyle="bold" />
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
@@ -178,10 +186,11 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/lower_layout"
         android:text="@string/another_calculation_button"
-        android:textSize="25sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:layout_marginTop="30dp"
         android:textAlignment="center"
         android:backgroundTint="#2D1447"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:fontFamily="@font/concertone_text"/>
 </RelativeLayout>

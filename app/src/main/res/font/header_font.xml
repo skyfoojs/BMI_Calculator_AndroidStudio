@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+    <font android:font="@font/serif_text"/>
+    <font android:font="@font/josenfin_text"/>
+    <font android:font="@font/concertone_text"/>
+    <font android:font="@font/changa_text"/>
+</font-family>

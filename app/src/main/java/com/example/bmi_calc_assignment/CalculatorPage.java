@@ -206,7 +206,7 @@ public class CalculatorPage extends AppCompatActivity {
                     } else if(height <= 0) {
                         Toast.makeText(getApplicationContext(), "Height should be greater than zero", Toast.LENGTH_SHORT).show();
                     } else {
-                        // Instantiating the intent and passing values into the intent object.
+                        // Creating the intent object and passing values into the intent object.
                         Intent intent = new Intent(CalculatorPage.this, ResultPage.class);
                         intent.putExtra("weight", getUserWeight());
                         intent.putExtra("height", getUserHeight());
@@ -215,6 +215,7 @@ public class CalculatorPage extends AppCompatActivity {
                         startActivity(intent);
                     }
                 } catch (NumberFormatException e) {
+                    // To Catch the Error if Height is not selected.
                     Toast.makeText(getApplicationContext(), "Please Select Your Height", Toast.LENGTH_SHORT).show();
                 }
             }
