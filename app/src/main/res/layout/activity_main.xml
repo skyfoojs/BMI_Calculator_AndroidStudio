@@ -30,5 +30,6 @@
         android:textSize="40sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/bmi_logo"/>
+        android:layout_below="@+id/bmi_logo"
+        android:fontFamily="@font/freeman_font"/>
 </RelativeLayout>

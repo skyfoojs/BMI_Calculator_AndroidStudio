@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:textAllCaps="true"
             android:id="@+id/app_name"
-            android:fontFamily="@font/serif_text"
+            android:fontFamily="@font/serif_font"
             android:letterSpacing="0.05" />
 
         <RelativeLayout
@@ -91,7 +91,7 @@
             android:textAlignment="center"
             android:id="@+id/height_text"
             android:layout_below="@id/gender_selection"
-            android:fontFamily="@font/josenfin_text"
+            android:fontFamily="@font/josenfin_font"
             android:textSize="15sp"/>
 
         <TextView
@@ -103,14 +103,14 @@
             android:textColor="@color/white"
             android:textAlignment="center"
             android:layout_below="@id/height_text"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/teko_font"/>
 
         <com.google.android.material.slider.Slider
             android:id="@+id/slider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:valueFrom="120"
             android:valueTo="220"
             android:layout_below="@id/sliderHeightText"/>
@@ -147,7 +147,7 @@
                     android:textColor="#A5BDB3"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/concertone_text"/>
+                    android:fontFamily="@font/concertone_font"/>
 
                 <EditText
                     android:id="@+id/user_weight"
@@ -155,12 +155,13 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="30sp"
+                    android:textSize="35sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="25dp"
                     android:text="@string/weight_count"
                     android:maxLength="4"
-                    android:inputType="numberDecimal"/>
+                    android:inputType="numberDecimal"
+                    android:fontFamily="@font/teko_font"/>
 
                 <ImageView
                     android:layout_width="50dp"
@@ -204,20 +205,21 @@
                     android:textColor="#A5BDB3"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:fontFamily="@font/concertone_text"/>
+                    android:fontFamily="@font/concertone_font"/>
 
                 <EditText
                     android:id="@+id/user_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/teko_font"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:text="@string/age_count"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="30dp"
-                    android:text="@string/age_count"
-                    android:inputType="number"
-                    android:maxLength="3"/>
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:layout_width="50dp"
@@ -253,6 +255,6 @@
         android:textAlignment="center"
         android:backgroundTint="#2D1447"
         android:textColor="@color/white"
-        android:fontFamily="@font/concertone_text"/>
+        android:fontFamily="@font/concertone_font"/>
 
 </RelativeLayout>
