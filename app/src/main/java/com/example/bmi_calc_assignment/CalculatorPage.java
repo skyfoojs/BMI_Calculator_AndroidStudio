@@ -75,7 +75,6 @@ public class CalculatorPage extends AppCompatActivity {
         double currentWeight = Double.parseDouble(getUserWeight());
         currentWeight += 0.1;
         setUserWeight(decimalFormatForWeight.format(currentWeight));
-
     }
 
     // When user presses the Minus button on Weight, the weight will not falls below 20.
