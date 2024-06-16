@@ -198,12 +198,12 @@ public class CalculatorPage extends AppCompatActivity {
                     // To Check If Gender is chosen, weight is exceed the limit, the age, and the height must be chosen.
                     if(gender.isEmpty()) {
                         Toast.makeText(getApplicationContext(), "Please Select a Gender", Toast.LENGTH_SHORT).show();
-                    } else if(weight > 150) {
-                        Toast.makeText(getApplicationContext(), "Weight should not exceed 150", Toast.LENGTH_SHORT).show();
-                    } else if(age > 100) {
-                        Toast.makeText(getApplicationContext(), "Age should not exceed 100", Toast.LENGTH_SHORT).show();
+                    } else if(weight > 150 || weight < 20) {
+                        Toast.makeText(getApplicationContext(), "Weight should not exceed 150 and Below 20", Toast.LENGTH_SHORT).show();
+                    } else if(age > 100 || age < 10) {
+                        Toast.makeText(getApplicationContext(), "Age should not exceed 100 and Below 10", Toast.LENGTH_SHORT).show();
                     } else if(height <= 0) {
-                        Toast.makeText(getApplicationContext(), "Height should be greater than zero", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Please Select Your Height", Toast.LENGTH_SHORT).show();
                     } else {
                         // Creating the intent object and passing values into the intent object.
                         Intent intent = new Intent(CalculatorPage.this, ResultPage.class);
